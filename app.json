@@ -1,0 +1,12 @@
+{
+  "name": "bolsitapp-app",
+  "displayName": "bolsitapp-app",
+  "expo": {
+    "name": "bolsitapp-app",
+    "slug": "bolsitapp-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
