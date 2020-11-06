@@ -11,7 +11,7 @@ export default function HomeScreenStack(props){
                 name='Home'
                 component={HomeScreen}
                 options={{
-                    title: 'Home'
+                    title: 'Inicio'
                 }}
             />
         </HomeScreenStackNavigator.Navigator>

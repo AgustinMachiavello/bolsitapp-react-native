@@ -6,7 +6,10 @@ import HandbagsScreenStack from './stacks/HandbagsStack';
 const BottomTab = createBottomTabNavigator();
 const INITIAL_ROUTE_NAME = 'Home';
 
-export default function BottomTabNavigation() {
+export default function BottomTabNavigation(props) {
+  // Hide root header
+  props.navigation.setOptions({ headerShown: false });
+
   return (
     <BottomTab.Navigator initialRouteName={INITIAL_ROUTE_NAME}>
       <BottomTab.Screen name='Home' component={HomeScreenStack} />
