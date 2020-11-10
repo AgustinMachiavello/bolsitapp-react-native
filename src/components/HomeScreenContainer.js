@@ -9,7 +9,7 @@ class HomeScreenContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            points: 999999,
+            points: 1500,
             purchases: [
                     {
                         id: 0,
@@ -42,7 +42,7 @@ export default HomeScreenContainer;
 const styles = StyleSheet.create(
     {
         container: {
-            flex: 1
+            flex: 1,
         }
     }
 )

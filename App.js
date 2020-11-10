@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 
 import BottomTabNavigation from './src/navigation/BottomTabNavigation'
 const Stack = createStackNavigator();
@@ -11,9 +11,12 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-      <StatusBar style="auto" />
       <Stack.Navigator>
-        <Stack.Screen name="root" component={BottomTabNavigation}/>
+        <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigation} options={
+          {
+            headerShown: false
+          }
+        }/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -22,6 +25,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: 'red',
   },
 });

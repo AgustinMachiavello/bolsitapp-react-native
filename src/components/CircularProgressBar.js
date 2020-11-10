@@ -23,8 +23,7 @@ const styles = StyleSheet.create(
     {
         container: {
             flex: 1,
-            padding: paddings.b,
-            backgroundColor: colors.white
+            padding: paddings.d,
         },
         progressBarWrapper: {
             flex: 1,
@@ -34,7 +33,7 @@ const styles = StyleSheet.create(
         progressBarCount: {
             flex: 1,
             borderRadius: 200,
-            margin: paddings.d,
+            margin: paddings.a,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: colors.white
