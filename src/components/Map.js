@@ -63,6 +63,13 @@ export default function Map(props){
         //do something?
     }
 
+    const onMarkerTap = (marker) => {
+        //var tempRegion = region;
+        console.log("------", marker, "-------");
+        //region.latitude = marker.latitude;
+        //region.longitude = marker.longitude
+    }
+
 
     return(
         <View style={styles.container}>
@@ -72,9 +79,10 @@ export default function Map(props){
                 region={region}
                 onRegionChange={onRegionChange}>
                 {markers.map((marker, i) => (
-                    <Marker 
+                    <Marker
                         key={i}
                         coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+                        onPress={() => onMarkerTap(marker)}
                         image={markerImage}
                         >
                         <Callout style={styles.callout}>

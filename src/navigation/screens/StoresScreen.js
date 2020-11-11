@@ -8,6 +8,7 @@ export default function StoresScreen(props){
     return(
         <SafeAreaView style={styles.container}>
             {/*
+            DO NOT UNCOMMENT - Could not find th way to style this text
             <View styles={styles.titleWrapper}>
                 <Text styles={styles.title}>
                     Encuentra las tiendas habilitadas más cercanas

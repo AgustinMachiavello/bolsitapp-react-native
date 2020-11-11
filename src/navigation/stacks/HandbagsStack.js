@@ -1,6 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import HandbagsScreen from '../screens/HandbagsScreen';
+import HandbagsDetailBagScreen from '../screens/HandbagsDetailBagScreen';
 
 const HandbagsScreenStackNavigator = createStackNavigator();
 
@@ -11,7 +12,14 @@ export default function HandbagsScreenStack(props){
                 name='Handbags'
                 component={HandbagsScreen}
                 options={{
-                    title: 'Handbags'
+                    title: 'Mis bolsas'
+                }}
+            />
+            <HandbagsScreenStackNavigator.Screen
+                name='HandbagsDetail'
+                component={HandbagsDetailBagScreen}
+                options={{
+                    title: 'Detalles de mi bolsa'
                 }}
             />
         </HandbagsScreenStackNavigator.Navigator>

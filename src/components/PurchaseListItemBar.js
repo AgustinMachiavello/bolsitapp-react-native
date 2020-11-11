@@ -13,9 +13,8 @@ export default function PurchaseListItemBar(props){
                 <Text style={styles.description}>{props.item.description}</Text>
             </View>
             <View style={styles.pointsWrapper}>
-                <Text style={styles.points}>{props.item.points}</Text>
+                <Text style={styles.points}>{props.item.points} Pts.</Text>
             </View>
-
         </View>
     )
 }

@@ -12,11 +12,13 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator>
-        <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigation} options={
-          {
-            headerShown: false
-          }
-        }/>
+        <Stack.Screen 
+          name="BottomTabNavigator" 
+          component={BottomTabNavigation}
+          options={
+            {
+              headerShown: false,
+            }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

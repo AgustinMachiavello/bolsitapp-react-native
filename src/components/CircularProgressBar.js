@@ -1,20 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 // Styling
 import colors from '../styles/colors';
 import paddings from '../styles/paddings';
 
-export default function HomeScreen(props){
+export default function CircularProgressBar(props){
+
     return(
         <View style={styles.container}>
-            <View style={styles.progressBarWrapper}>
-                <View style={styles.progressBarCount}>
-                    <Text style={styles.progressCount}>
-                        {props.value}
-                    </Text>
-                </View>
-            </View>
+            <AnimatedCircularProgress
+                size={300}
+                width={15}
+                fill={(props.value%1000)/10}
+                tintColor={colors.lightGreen}
+                backgroundColor={colors.grey} 
+                style={styles.circularProgressBar}/>
+            <Text style={styles.innerValue}>{props.value}</Text>
         </View>
     )
 }
@@ -24,22 +28,14 @@ const styles = StyleSheet.create(
         container: {
             flex: 1,
             padding: paddings.d,
-        },
-        progressBarWrapper: {
-            flex: 1,
-            borderRadius: 200,
-            backgroundColor: colors.lightGreen
-        },
-        progressBarCount: {
-            flex: 1,
-            borderRadius: 200,
-            margin: paddings.a,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: colors.white
         },
-        progressCount: {
-            fontSize: 40
+        circularProgressBar: {
+            position: "absolute"
+        },
+        innerValue:{
+            fontSize: 60,
         }
     }
 )
