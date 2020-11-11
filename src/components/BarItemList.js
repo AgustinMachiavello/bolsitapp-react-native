@@ -11,7 +11,7 @@ import paddings from '../styles/paddings';
 export default function BarItemList(props){
     return(
         <View style={styles.container}>
-            {props.itemList.map((item, i) => {
+            {props.stores.storeList.map((item, i) => {
                 return <BarItem key={i} item={item} navigation={props.navigation}></BarItem>
             })}
         </View>
