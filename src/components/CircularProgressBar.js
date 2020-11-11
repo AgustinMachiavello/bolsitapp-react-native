@@ -14,9 +14,11 @@ export default function CircularProgressBar(props){
             <AnimatedCircularProgress
                 size={300}
                 width={15}
+                backgroundWidth={5}
+                lineCap={"round"}
                 fill={(props.value%1000)/10}
                 tintColor={colors.lightGreen}
-                backgroundColor={colors.grey} 
+                backgroundColor={colors.lightGrey} 
                 style={styles.circularProgressBar}/>
             <Text style={styles.innerValue}>{props.value}</Text>
         </View>
@@ -35,7 +37,8 @@ const styles = StyleSheet.create(
             position: "absolute"
         },
         innerValue:{
-            fontSize: 60,
+            fontWeight: "200",
+            fontSize: 70,
         }
     }
 )

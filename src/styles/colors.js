@@ -15,7 +15,9 @@ const colors = {
     lightBlue: '#4b7bec',
     blue: '#3867d6',
     lightPurple: '#a55eea',
-    purple: '#8854d0'
+    purple: '#8854d0',
+    lightTurquoise: "#2bcbba",
+    turquoise: "#0fb9b1",
 }
 
 export default colors;

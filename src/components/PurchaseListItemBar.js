@@ -9,8 +9,8 @@ export default function PurchaseListItemBar(props){
     return(
         <View style={styles.container}>
             <View style={styles.informationWrapper}>
-                <Text style={styles.date}>{props.item.date}</Text>
                 <Text style={styles.description}>{props.item.description}</Text>
+                <Text style={styles.date}>{props.item.date}</Text>
             </View>
             <View style={styles.pointsWrapper}>
                 <Text style={styles.points}>{props.item.points} Pts.</Text>
@@ -25,20 +25,25 @@ const styles = StyleSheet.create(
             flexDirection: "row",
             padding: 5,
             borderTopColor: colors.black,
-            borderTopWidth: 1
+            borderTopWidth: 1,
         },
         informationWrapper: {
-            width: '90%',
+            flex: 4,
         },
         pointsWrapper: {
-            width: '10%',
+            flex: 1,
         },
         date: {
+            color: colors.grey,
+            fontSize: 15
         },
         description: {
+            fontSize: 15,
         },
         points: {
-            fontWeight: "bold"
+            fontSize: 20,
+            color: colors.green,
+            fontWeight: "500",
         }
     }
 )

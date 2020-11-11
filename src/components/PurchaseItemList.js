@@ -11,10 +11,13 @@ import paddings from '../styles/paddings';
 export default function PurchaseItemList(props){
     return(
         <View style={styles.container}>
-            <Text style={styles.title}>Puntos canjeados</Text>
-            {props.itemList.slice(0, 6).map((item, i) => {
+            <Text style={styles.title}>Últimas transacciones</Text>
+            {props.itemList.slice(0, 4).map((item, i) => {
                 return <PurchaseListItemBar key={i} item={item}></PurchaseListItemBar>
             })}
+            <View style={styles.ellipsis}>
+                <Text>...</Text>
+            </View>
         </View>
     )
 }
@@ -24,11 +27,15 @@ const styles = StyleSheet.create(
         container: {
             flex: 1,
             padding: paddings.a,
-            backgroundColor: colors.lightWhite
         },
         title:{
+            fontSize: 20,
             marginBottom: '5%',
-            fontWeight: "bold"
+            fontWeight: "bold",
+        },
+        ellipsis: {
+            flex: 1,
+            alignItems: "center",
         }
     }
 )
