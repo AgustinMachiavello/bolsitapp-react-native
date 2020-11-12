@@ -22,7 +22,7 @@ export default function QRReader(props) {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        props.onCodeScanned({type, data});
+        props.onCodeScanned({ type, data });
     }
     const requestPermissionNull = <Text>Solicitando permisos de camara</Text>;
     const requestPermissionFalse = <Text>Sin acceso a la camara</Text>;

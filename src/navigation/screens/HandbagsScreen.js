@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
-import {View, Text, SafeAreaView, StyleSheet, Button } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, SafeAreaView, StyleSheet, Button, TouchableHighlight } from 'react-native';
 
 // Components
 import BarItemList from '../../components/BarItemList';
 import QRReader from '../../components/QRReader';
+import colors from '../../styles/colors';
+
+// Styling
+import paddings from '../../styles/paddings';
 
 
 export default function HandbagsScreen(props){
@@ -28,13 +32,18 @@ export default function HandbagsScreen(props){
 
     );
 
-    const handleNewBag = ({type, data}) => {
-        let newCode = JSON.parse(data).code
-        alert(`Nueva bolsa agregada! (${newCode})`);
+    useEffect(() => {
+        if (props.route.params?.hasOwnProperty('newBag')){
+            handleNewBag(props.route.params.newBag);
+        }
+    }, [props.route.params])
+
+    const handleNewBag = (bagObject) => {
+        alert(`¡Nueva bolsa agregada! (${bagObject.code})`);
         let newBag = {
             id: 3,
             title: 'Nueva bolsa',
-            code: newCode,
+            code: bagObject.code,
             imageURL: "https://images-na.ssl-images-amazon.com/images/I/81%2BaNdPVEEL._AC_UL1500_.jpg",
             imageCodeURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png",
         }
@@ -44,7 +53,12 @@ export default function HandbagsScreen(props){
 
     return(
         <SafeAreaView style={styles.container}>
-            <Button title="Escanear bolsa" onPress={() => props.navigation.navigate('HandbagsAddBag', {onNewBagScanned: handleNewBag})}></Button>
+            <TouchableHighlight style={styles.scannButton}>
+                <Button 
+                    title="Escanear una bolsa nueva" 
+                    onPress={() => props.navigation.navigate('HandbagsAddBag')} />
+            </TouchableHighlight>
+
             <BarItemList stores={stores} navigation={props.navigation}/>
         </SafeAreaView>
     )
@@ -54,4 +68,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
+    scannButton: {
+        padding: paddings.a,
+        backgroundColor: colors.white,
+    }
 });

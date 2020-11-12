@@ -9,11 +9,14 @@ import colors from '../../styles/colors';
 import QRReader from '../../components/QRReader';
 
 export default function HandbagsAddBagScreen(props){
-    const { onNewBagScanned } = props.route.params
+
+    const handleNewBagScanned = ({type, data}) => {
+        props.navigation.navigate('Handbags', {newBag: JSON.parse(data)})
+    }
 
     return(
         <SafeAreaView style={styles.container}>
-            <QRReader onCodeScanned={onNewBagScanned}/>
+            <QRReader onCodeScanned={handleNewBagScanned}/>
         </SafeAreaView>
     )
 }

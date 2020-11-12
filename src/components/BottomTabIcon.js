@@ -9,7 +9,7 @@ export default function BottomTabIcon(props) {
       <Feather
         name={props.name}
         size={30}
-        color={props.focused ? colors.lightBlue : colors.grey}
+        color={props.focused ? colors.black : colors.grey}
       />
     );
   }
