@@ -27,8 +27,7 @@ export default function BarItem(props){
 const styles = StyleSheet.create(
     {
         container: {
-            width: "100%",
-            height: "20%",
+            flex: 1,
             marginBottom: 10,
         },
         barTouchable: {
@@ -45,6 +44,7 @@ const styles = StyleSheet.create(
         barItemImage: {
             resizeMode: "contain",
             width: "40%",
+            height: 100,
         },
         barItemInformationWrapper: {
             flex: 1,
