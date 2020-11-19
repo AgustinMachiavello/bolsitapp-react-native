@@ -5,15 +5,18 @@ import { View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import colors from '../styles/colors';
 import paddings from '../styles/paddings';
 
+const bagTypeIcons =  {S: require('../assets/bagIcon1.png'), M: require('../assets/bagIcon2.png'), L: require('../assets/bagIcon3.png')}
+
 export default function BarItem(props){
     const {navigate} = props.navigation;
+    const bagImage = bagTypeIcons[props.item.bag_type]
     return(
         <View style={styles.container}>
             <TouchableHighlight style={styles.barTouchable} onPress={() => navigate('HandbagsDetail', {item: props.item})}>
                 <View style={styles.barItemWrapper}>
-                    <Image source={{uri: props.item.imageURL}} style={styles.barItemImage}/>
+                    <Image source={bagImage} style={styles.barItemImage}/>
                     <View style={styles.barItemInformationWrapper}>
-                        <Text style={styles.barItemTitle}>{props.item.title}</Text>
+                        <Text style={styles.barItemTitle}>{props.item.name == null ? 'Nueva bolsa': props.item.name}</Text>
                     </View>
                     <View style={styles.barItemDetail}>
                         <Text>--></Text>

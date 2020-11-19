@@ -10,8 +10,8 @@ export default function HandbagsDetailBagScreen(props){
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.informationWrapper}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.code}>Código: {item.code}</Text>
+                <Text style={styles.title}>{item.name == null ? 'Nueva bolsa': props.item.name}</Text>
+                <Text style={styles.code}>Código: {item.qr_code}</Text>
             </View>
             <Image source={{uri: item.imageCodeURL}} style={styles.itemCodeImage}/>
         </SafeAreaView>
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         fontSize: 60,
     },
     code: {
+        marginTop: paddings.c,
         fontSize: 20,
     },
     itemCodeImage: {

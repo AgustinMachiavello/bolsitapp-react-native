@@ -9,46 +9,71 @@ import colors from '../../styles/colors';
 // Styling
 import paddings from '../../styles/paddings';
 
+import {get, SERVER_URL} from '../../api/methods';
+
+const USER_ID = '123';
 
 export default function HandbagsScreen(props){
-    const [stores, setStores] = useState({
-        storeList: [
-            {
-                id: 0,
-                title: 'Mi bolsa',
-                code: "131451248172761367",
-                imageURL: "https://icons.iconarchive.com/icons/icons8/ios7/256/Ecommerce-Shopping-Bag-icon.png",
-                imageCodeURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png",
-            },
-            {
-                id: 1,
-                title: 'Bolsa Tía',
-                code: "8941421688172267962",
-                imageURL: "https://i.pinimg.com/originals/09/88/dc/0988dc27ab24d196b91d085c786c292d.png",
-                imageCodeURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png",
-            },
-        ]
-    }
+    const [bags, setBags] = useState({
+        bagList: []
+    });
 
-    );
+    const [isFetching, setIsFetching] = useState(false);
+    let previuosNewBagId = null;
 
     useEffect(() => {
-        if (props.route.params?.hasOwnProperty('newBag')){
-            handleNewBag(props.route.params.newBag);
+        console.log('useEffect');
+        // Get user's bags
+        if (bags.bagList.length <= 0 && !isFetching) {
+            onRefresh();
         }
-    }, [props.route.params])
+
+        // Check if a new bag is detected
+        if (props.route.params?.hasOwnProperty('newBag') && !isFetching){
+            if (bags.bagList.some(bag => bag.id_bag === props.route.params.newBag.id_bag)){
+                return;
+            }
+            else if (previuosNewBagId === props.route.params.newBag.id_bag) {
+                return;
+            }
+            else {
+                previuosNewBagId = props.route.params.newBag.id_bag;
+                handleNewBag(props.route.params.newBag);
+            }
+        }
+    });
+
+    const loadBags = (bagsArray) => {
+        setBags({bagList: bagsArray});
+        console.log('bagsLoaded');
+    }
+
+    const onRefresh = () => {
+        console.log('onRefresh');
+        setIsFetching(true);
+        let bags = get(SERVER_URL + 'users/' + USER_ID);
+        bags.then((response) => {
+            loadBags(response.bags_owned);
+            setIsFetching(false);
+        });
+    }
 
     const handleNewBag = (bagObject) => {
-        alert(`¡Nueva bolsa agregada! (${bagObject.code})`);
-        let newBag = {
-            id: 3,
-            title: 'Nueva bolsa',
-            code: bagObject.code,
-            imageURL: "https://images-na.ssl-images-amazon.com/images/I/81%2BaNdPVEEL._AC_UL1500_.jpg",
-            imageCodeURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png",
-        }
-        let newStores = stores.storeList.concat(newBag)
-        setStores({storeList: newStores});
+        let dataPost = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                'user': 123,
+            })
+        };
+        setIsFetching(true);
+        let post = get(SERVER_URL + 'bags/' + bagObject.id_bag + '/', dataPost);
+        post.then((response) => {
+            loadBags(bags.bagList.concat(response));
+            setIsFetching(false);
+        });
     }
 
     return(
@@ -59,7 +84,7 @@ export default function HandbagsScreen(props){
                     onPress={() => props.navigation.navigate('HandbagsAddBag')} />
             </TouchableHighlight>
 
-            <BarItemList stores={stores} navigation={props.navigation}/>
+            <BarItemList items={bags} navigation={props.navigation} onRefresh={onRefresh} isFetching={isFetching}/>
         </SafeAreaView>
     )
 }
